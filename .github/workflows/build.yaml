@@ -20,7 +20,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APKs
-        run: flutter build apk && flutter build ios
+        run: flutter build apk
 
       - name: Upload to Google Drive
         run: |
@@ -32,4 +32,3 @@ jobs:
 
           # Upload files to the folder
           gdrive upload --file ./build/app/outputs/flutter-apk/app-release.apk --name "MyApp-Release.apk" --parent $FOLDER_ID --mime application/vnd.android.package-archive
-          gdrive upload --file ./build/ios/Runner.ipa --name "MyApp-Release.ipa" --parent $FOLDER_ID
