@@ -1,0 +1,15 @@
+enum PageKeys {
+  homePage,
+  t200TrainingPage,
+  backendTrainingPage,
+  eventCreationPage,
+  feedbackPage,
+  t200StatisticsPage,
+  techSeriesSeeMorePage,
+  techSeriesFeedbackPage,
+  backendTrainingEnrollmentsSeeMorePage,
+  backendTrainingCoursesSeeMorePage,
+  otherInterestingStuffSeeMorePage,
+  newslettersSeeMorePage,
+  t200ProgressDetailsPage,
+}
