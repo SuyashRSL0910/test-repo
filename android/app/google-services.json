@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "253454957943",
+    "project_id": "bts-portal",
+    "storage_bucket": "bts-portal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253454957943:android:e3035c03501dc80180f572",
+        "android_client_info": {
+          "package_name": "com.example.home_page"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253454957943-ppikueu62attlk11j0d08ukn6q38mjdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTKckKKUBkgDDJsBxX5vNQ4db8Kkt2gAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253454957943-ppikueu62attlk11j0d08ukn6q38mjdm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253454957943-fqnd863v31ho893vgenirfdpqemdkaht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.homePage"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
