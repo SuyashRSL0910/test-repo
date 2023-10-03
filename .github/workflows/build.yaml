@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.13.6
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APKs
+        run: flutter build apk && flutter build ios
+
+      - name: Upload to Google Drive
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE_ACCOUNT }} > /tmp/credentials.json
+          export GOOGLE_APPLICATION_CREDENTIALS="/tmp/credentials.json"
+          
+          # Create the folder on Google Drive (replace 'MyApp' with your folder name)
+          FOLDER_ID=$(gdrive mkdir "MyApp" | awk '/Directory/ {print $2}')
+
+          # Upload files to the folder
+          gdrive upload --file ./build/app/outputs/flutter-apk/app-release.apk --name "MyApp-Release.apk" --parent $FOLDER_ID --mime application/vnd.android.package-archive
+          gdrive upload --file ./build/ios/Runner.ipa --name "MyApp-Release.ipa" --parent $FOLDER_ID
