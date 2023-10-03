@@ -24,8 +24,10 @@ jobs:
 
       - name: Install gdrive
         run: |
-          wget -O /usr/local/bin/gdrive https://github.com/gdrive-org/gdrive/releases/download/2.1.0/gdrive-linux-x64
+          wget -O /usr/local/bin/gdrive https://github.com/gdrive-org/gdrive/releases/download/2.1.1/gdrive-linux-x64
           chmod +x /usr/local/bin/gdrive
+        env:
+          LATEST_VERSION: v2.1.1
 
       - name: Upload to Google Drive
         run: |
