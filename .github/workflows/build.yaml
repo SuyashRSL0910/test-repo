@@ -22,6 +22,11 @@ jobs:
       - name: Build APKs
         run: flutter build apk
 
+      - name: Install gdrive
+        run: |
+          wget -O /usr/local/bin/gdrive https://github.com/gdrive-org/gdrive/releases/download/2.1.0/gdrive-linux-x64
+          chmod +x /usr/local/bin/gdrive
+
       - name: Upload to Google Drive
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_ACCOUNT }} > /tmp/credentials.json
