@@ -22,27 +22,10 @@ jobs:
       - name: Build APKs
         run: flutter build apk
 
-      - name: Upload to Google Drive
-        uses: Jodebu/upload-to-drive@master
-        with:
-          target: ./build/app/outputs/flutter-apk/app-release.apk
-          credentials: secrets.GOOGLE_SERVICE_ACCOUNT
-          folder: 1ILi3ukF3q_XneBpTpCrQ1uhXAW57lI7r
+      - name: Install rclone
+        run: curl https://rclone.org/install.sh | sudo bash
 
-#      - name: Install gdrive
-#        run: |
-#          wget -O /usr/local/bin/gdrive https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive-linux-x64
-#          chmod +x /usr/local/bin/gdrive
-#        env:
-#          LATEST_VERSION: v2.1.1
-#
-#      - name: Upload to Google Drive
-#        run: |
-#          echo ${{ secrets.GOOGLE_SERVICE_ACCOUNT }} > /tmp/credentials.json
-#          export GOOGLE_APPLICATION_CREDENTIALS="/tmp/credentials.json"
-#
-#          # Create the folder on Google Drive (replace 'MyApp' with your folder name)
-#          FOLDER_ID=$(gdrive mkdir "MyApp" | awk '/Directory/ {print $2}')
-#
-#          # Upload files to the folder
-#          gdrive upload --file ./build/app/outputs/flutter-apk/app-release.apk --name "MyApp-Release.apk" --parent $FOLDER_ID --mime application/vnd.android.package-archive
+      - name: Upload to Google Drive
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT }}" > /tmp/rclone.conf
+          rclone --config=/tmp/rclone.conf copy ./build/app/outputs/flutter-apk/app-release.apk remote:https://drive.google.com/drive/u/0/folders/1ILi3ukF3q_XneBpTpCrQ1uhXAW57lI7r
